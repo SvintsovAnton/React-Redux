@@ -2,16 +2,14 @@ import { useState } from "react"
 import Counter from "../components/Counter/Counter"
 
 function Homework29() {
-  const counterStart: number = 0
-
-  const [counterNumber, setCounterNumber] = useState(0)
+  const [counterNumber, setCounterNumber] = useState<number>(0)
 
   const onPlusinApp = () => {
-    setCounterNumber(counterNumber + 1)
+    setCounterNumber(prevValue => prevValue + 1)
   }
 
   const onMinusinApp = () => {
-    setCounterNumber(counterNumber - 1)
+    setCounterNumber(prevValue => prevValue - 1)
   }
 
   return (
