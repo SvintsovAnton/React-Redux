@@ -1,17 +1,56 @@
 import Button from "../Button/Button"
+import { useState } from "react"
 
-import { CounterProps } from "./types"
 import { CounterWrapper, ButtonControl, Count } from "./styles"
 
-function Counter({ count, onMinus, onPlus }: CounterProps) {
+function Counter() {
+  const [counterNumber, setCounterNumber] = useState<number>(0)
+
+  const onPlusinApp = () => {
+    setCounterNumber(
+      (counterNumber + 1).toString().indexOf(".") !== -1
+        ? prevValue => parseFloat((prevValue + 1).toFixed(2))
+        : prevValue => prevValue + 1,
+    )
+  }
+
+  const onMinusinApp = () => {
+    setCounterNumber(
+      (counterNumber - 1).toString().indexOf(".") !== -1
+        ? prevValue => parseFloat((prevValue - 1).toFixed(2))
+        : prevValue => prevValue - 1,
+    )
+  }
+
+  const onMultiplyinApp = () => {
+    setCounterNumber(
+      (counterNumber * 2).toString().indexOf(".") !== -1
+        ? prevValue => parseFloat((prevValue * 2).toFixed(2))
+        : prevValue => prevValue * 2,
+    )
+  }
+  const onDivideinApp = () => {
+    setCounterNumber(
+      (counterNumber / 2).toString().indexOf(".") !== -1
+        ? prevValue => parseFloat((prevValue / 2).toFixed(2))
+        : prevValue => prevValue / 2,
+    )
+  }
+
   return (
     <CounterWrapper>
       <ButtonControl>
-        <Button name="-" onClick={onMinus} />
+        <Button name="Multiply" onClick={onMultiplyinApp} />
       </ButtonControl>
-      <Count>{count}</Count>
       <ButtonControl>
-        <Button name="+" onClick={onPlus} />
+        <Button name="+" onClick={onPlusinApp} />
+      </ButtonControl>
+      <Count>{counterNumber}</Count>
+      <ButtonControl>
+        <Button name="-" onClick={onMinusinApp} />
+      </ButtonControl>
+      <ButtonControl>
+        <Button name="Divide" onClick={onDivideinApp} />
       </ButtonControl>
     </CounterWrapper>
   )
