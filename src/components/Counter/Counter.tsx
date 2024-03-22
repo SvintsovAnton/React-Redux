@@ -1,56 +1,60 @@
-import Button from "../Button/Button"
+import Button from "components/Button/Button"
 import { useState } from "react"
+import { useAppDispatch, useAppSelector } from "store/hooks"
+import {
+  counterSliceActions,
+  counterSliceSelectors,
+} from "store/redux/counter/counterSlice"
 
 import { CounterWrapper, ButtonControl, Count } from "./styles"
 
 function Counter() {
-  const [counterNumber, setCounterNumber] = useState<number>(0)
+  //  const [counterNumber, setCounterNumber] = useState<number>(0)
 
-  const onPlusinApp = () => {
-    setCounterNumber(
-      (counterNumber + 1).toString().indexOf(".") !== -1
-        ? prevValue => parseFloat((prevValue + 1).toFixed(2))
-        : prevValue => prevValue + 1,
-    )
-  }
+  //  const onPlusinApp = () => {
+  //    setCounterNumber(prevValue => Number((prevValue + 1).toFixed(2)))
+  //  }
 
-  const onMinusinApp = () => {
-    setCounterNumber(
-      (counterNumber - 1).toString().indexOf(".") !== -1
-        ? prevValue => parseFloat((prevValue - 1).toFixed(2))
-        : prevValue => prevValue - 1,
-    )
-  }
+  //  const onMinusinApp = () => {
+  //    setCounterNumber(prevValue => Number((prevValue - 2).toFixed(2)))
+  //  }
 
-  const onMultiplyinApp = () => {
-    setCounterNumber(
-      (counterNumber * 2).toString().indexOf(".") !== -1
-        ? prevValue => parseFloat((prevValue * 2).toFixed(2))
-        : prevValue => prevValue * 2,
-    )
+  //  const onMultiplyinApp = () => {
+  //    setCounterNumber(prevValue => Number((prevValue * 2).toFixed(2)))
+  //  }
+  //  const onDivideinApp = () => {
+  //   setCounterNumber(prevValue => Number((prevValue / 2).toFixed(2)))
+  //  }
+
+  const dispatch = useAppDispatch()
+  const count = useAppSelector(counterSliceSelectors.count)
+  const onPlus = () => {
+    counterSliceActions.add()
   }
-  const onDivideinApp = () => {
-    setCounterNumber(
-      (counterNumber / 2).toString().indexOf(".") !== -1
-        ? prevValue => parseFloat((prevValue / 2).toFixed(2))
-        : prevValue => prevValue / 2,
-    )
+  const onMinus = () => {
+    counterSliceActions.minus()
+  }
+  const onMultiply = () => {
+    counterSliceActions.multiply()
+  }
+  const onDivide = () => {
+    counterSliceActions.divide()
   }
 
   return (
     <CounterWrapper>
       <ButtonControl>
-        <Button name="Multiply" onClick={onMultiplyinApp} />
+        <Button name="Multiply" onClick={onMultiply} />
       </ButtonControl>
       <ButtonControl>
-        <Button name="+" onClick={onPlusinApp} />
+        <Button name="+" onClick={onPlus} />
       </ButtonControl>
-      <Count>{counterNumber}</Count>
+      <Count>{count}</Count>
       <ButtonControl>
-        <Button name="-" onClick={onMinusinApp} />
+        <Button name="-" onClick={onMinus} />
       </ButtonControl>
       <ButtonControl>
-        <Button name="Divide" onClick={onDivideinApp} />
+        <Button name="Divide" onClick={onDivide} />
       </ButtonControl>
     </CounterWrapper>
   )
