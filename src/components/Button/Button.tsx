@@ -8,6 +8,7 @@ function Button({
   name,
   type = "button",
   onClick = () => {},
+  imgSrc,
 }: ButtonProps) {
   return (
     <ButtonComponent
@@ -18,6 +19,7 @@ function Button({
       type={type}
     >
       {name}
+      <img src={imgSrc} />
     </ButtonComponent>
   )
 }
