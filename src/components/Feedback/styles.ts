@@ -1,25 +1,29 @@
 import styled from "@emotion/styled"
 
+import { colors } from "styles/colors"
+
 export const FeedbackWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   gap: 15px;
-  width: 400px;
-  height: fit-content;
-  border: 1px solid white;
-  border-radius: 10px;
-  padding: 20px;
-  background-color: rgb(26, 35, 53);
+  min-width: 300px;
+  align-items: center;
+  padding: 40px;
+  background: ${colors.primary};
+`
+
+export const Count = styled.p`
+  font-size: 20px;
+  font-weight: bold;
   color: white;
 `
 
-export const ButtonControl = styled.div`
-  width: 80px;
+export const ImageContainer = styled.div`
+  width: 100px;
+  height: 50px;
 `
 
-export const LikeDislike = styled.p`
-  font-size: 40px;
-  color: white;
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 `

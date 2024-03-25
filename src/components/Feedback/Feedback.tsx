@@ -1,7 +1,7 @@
 import Button from "components/Button/Button"
 import { Like, Dislike } from "assets"
 import { useAppDispatch, useAppSelector } from "store/hooks"
-import { FeedbackWrapper, ButtonControl, LikeDislike } from "./styles"
+import { FeedbackWrapper, Count, Image, ImageContainer } from "./styles"
 import {
   feedbackSliceActions,
   feedbackSliceSelectors,
@@ -26,17 +26,15 @@ function Feedback() {
 
   return (
     <FeedbackWrapper>
-      <ButtonControl>
-        <Button imgSrc={Like} onClick={plusLike} />
-      </ButtonControl>
-      <LikeDislike>{like}</LikeDislike>
-      <ButtonControl>
-        <Button imgSrc={Dislike} onClick={plusDislike} />
-      </ButtonControl>
-      <LikeDislike>{dislike}</LikeDislike>
-      <ButtonControl>
-        <Button name="Reset Results" onClick={resetResult} />
-      </ButtonControl>
+      <ImageContainer>
+        <Image src={Like} alt="like" onClick={plusDislike} />
+      </ImageContainer>
+      <Count>{like}</Count>
+      <ImageContainer>
+        <Image src={Dislike} alt="dislike" onClick={plusDislike} />
+      </ImageContainer>
+      <Count>{dislike}</Count>
+      <Button name="Reset Results" onClick={resetResult} />
     </FeedbackWrapper>
   )
 }
