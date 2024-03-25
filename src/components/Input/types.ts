@@ -4,7 +4,7 @@ export interface InputProps {
   id: string
   name: string
   disabled?: boolean
-  placeholder: string
+  placeholder?: string
   label?: string
   type?: string
   value: string
